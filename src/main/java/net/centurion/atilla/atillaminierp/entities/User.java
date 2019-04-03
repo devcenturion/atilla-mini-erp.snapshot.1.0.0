@@ -5,6 +5,7 @@ import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
+import javax.validation.constraints.NotNull;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Collection;
@@ -14,17 +15,30 @@ import java.util.Date;
 public class User implements Serializable{
 
     @Id
+    @NotNull
     private String login;
+    @NotNull
     private String password;
+    @NotNull
     private String firstName;
+    @NotNull
     private String lastName;
+    @NotNull
     private String numeroTelephone;
+    @NotNull
     private String address;
+    @NotNull
     private Boolean actived = true;
+
     private String urlPhoto;
+
+    @NotNull
     private Date dateNaissance;
+    @NotNull
     private String cni;
+    @NotNull
     private String sexe;
+    @NotNull
     private String email;
 
     @OneToMany

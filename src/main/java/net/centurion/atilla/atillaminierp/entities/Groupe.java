@@ -4,6 +4,7 @@ import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
+import javax.validation.constraints.NotNull;
 import java.io.Serializable;
 import java.util.Collection;
 import java.util.Date;
@@ -12,8 +13,11 @@ import java.util.Date;
 public class Groupe implements Serializable{
 
     @Id
+    @NotNull
     private String nom;
+    @NotNull
     private String description;
+    @NotNull
     private Date dateCreationGroupe;
 
     @OneToMany
@@ -24,10 +28,10 @@ public class Groupe implements Serializable{
     @JoinColumn(name = "idGroupe")
     private Collection<UserGroupe> userGroupes;
 
-    public Groupe (String nom, String description, Date dateCreationGroupe, Collection<GroupeAction> groupeActions, Collection<UserGroupe> userGroupes) {
+    public Groupe (String nom, String description, Collection<GroupeAction> groupeActions, Collection<UserGroupe> userGroupes) {
         this.nom = nom;
         this.description = description;
-        this.dateCreationGroupe = dateCreationGroupe;
+        this.dateCreationGroupe = new Date();
         this.groupeActions = groupeActions;
         this.userGroupes = userGroupes;
     }

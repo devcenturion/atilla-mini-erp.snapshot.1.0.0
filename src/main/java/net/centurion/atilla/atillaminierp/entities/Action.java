@@ -5,6 +5,7 @@ import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
+import javax.validation.constraints.NotNull;
 import java.io.Serializable;
 import java.util.Collection;
 
@@ -12,6 +13,7 @@ import java.util.Collection;
 public class Action implements Serializable{
 
     @Id
+    @NotNull
     private String url;
 
     @OneToMany

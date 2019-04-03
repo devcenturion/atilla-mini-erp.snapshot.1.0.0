@@ -43,8 +43,7 @@ public class UserController{
                            @RequestParam(name = "dateNaissance", defaultValue = "") String dateNaissance,
                            @RequestParam(name = "cni", defaultValue = "") String cni,
                            @RequestParam(name = "sexe", defaultValue = "") String sexe,
-                           @RequestParam(name = "email", defaultValue = "") String email,
-                           @RequestParam(name = "groupes", defaultValue = "{'USER'}") List<String> groupes
+                           @RequestParam(name = "email", defaultValue = "") String email
     ) {
         Date date = new Date(dateNaissance);
         User user = new User(login, null, firstName, lastName, numeroTelephone, address, actived, urlPhoto, date, cni, sexe, email, null);
@@ -53,9 +52,6 @@ public class UserController{
         user = userRepository.findOne(login);
 
         if (!user.equals(null)) {
-            for (String s : groupes) {
-                userService.addUserInGroupe(s, user.getLogin());
-            }
             model.addAttribute("user", user);
             model.addAttribute("msg", "le nouvel utilisateur a ete enregistre avec success");
         } else model.addAttribute("msg", "echec de l'enregistrement ");
@@ -88,6 +84,11 @@ public class UserController{
         userService.changePassCompte(login, odlPass, newPass);
         model.addAttribute(userRepository.findOne(login));
         return "updatePass";
+    }
+
+    @RequestMapping(value = "/add")
+    public void add ( ) {
+
     }
 
 }

@@ -1,6 +1,7 @@
 package net.centurion.atilla.atillaminierp.entities;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
 import java.io.Serializable;
 
 @Entity
@@ -8,14 +9,17 @@ public class GroupeAction implements Serializable{
 
     @Id
     @GeneratedValue
+    @NotNull
     private Integer id;
 
     @ManyToOne
     @JoinColumn(name = "idGroupe")
+    @NotNull
     private Groupe groupe;
 
     @ManyToOne
     @JoinColumn(name = "idAction")
+    @NotNull
     private Action action;
 
     public GroupeAction (Groupe groupe, Action action) {
